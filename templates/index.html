@@ -1,0 +1,29 @@
+{% extends "layout.html" %} {% block title %} Edit {% endblock %} {% block main %}
+<main>
+
+
+    <article class="date-slider">
+
+        <input type="button" class="date-prev" id="prev" value="&lt;">
+        <input name='date' type="date" class="date-current">
+        <input type="button" class="date-next" id="next " value="&gt;">
+        <div id="grand-total" class="label-total">No data</div>
+        <img class="copy-icon" src="../static/copy.svg" onclick='generateTextMessage(".input-row")'>
+    </article>
+    <div class="testing" value=" {{ list }} "></div>
+    <div class="input-sheet" autocomplete="off" autocorrect="off">
+        <div class="label-panel">
+
+            <div class="label less">Room</div>
+            <div class="label less">Adults</div>
+            <div class="label less">Children</div>
+            <div class="label less">Total</div>
+        </div>
+    </div>
+    <div class="spacer"></div>
+
+
+</main>
+
+
+{% endblock %}

@@ -1,0 +1,537 @@
+{% extends "layout.html" %} {% block title %} Edit {% endblock %} {% block main %}
+<main>
+    <img class="copy-icon-center" src="../static/reverse.svg" onclick='fillFormAsBefore()'>
+    <article class="date-slider">
+        <input type="button" class="date-prev" id="prev" value="&lt;">
+        <input type="date" class="date-current">
+        <input type="button" class="date-next" id="next " value="&gt;">
+    </article>
+
+    <div class="input-sheet" id="input-sheet" autocomplete="off" autocorrect="off">
+        <div class="label-panel">
+            <div class="label">Room</div>
+            <div class="label">Adults</div>
+            <div class="label">Children</div>
+            <div class="label">Rate</div>
+            <div class="label none"></div>
+            <div class="label">Breakfast</div>
+            <div class="label">Tax</div>
+            <div class="label">Total</div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 21 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="1400" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 22 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="1400" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 23 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="1400" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 24 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="1100" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 25 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="1100" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 27 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="1400" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 28 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="1400" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 31 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="1300" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 32 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="1300" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 33 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="1400" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 34 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="1100" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 35 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updThreeRoomDef(this),total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="1100" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 36 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="1400" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 37 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="1300" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 38 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="1100" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="label pointer" onclick="changeStatus(this), total(this)"> 41 </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updTax(this), updSuiteRoomDef(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-a" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updTax(this), updSuiteRoomDef(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), updSuiteRoomDef(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-c" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), updSuiteRoomDef(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <input type="number" min="700" max="5000" value="2500" class="input-big" , onchange="total(this)">
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="0" kind="my-input-b" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <button act="decrement" onclick="stepper(this), total(this)" class='incr-decr-btn'> - </button>
+                <input type="number" min="0" max="6" step="1" value="2" kind="my-input-t" class="input-small" readonly>
+                <button act="increment" onclick="stepper(this), total(this)" class='incr-decr-btn'> + </button>
+            </div>
+            <div class="label">
+                <p>
+                    0.00
+                </p>
+            </div>
+        </div>
+
+        <div class="submission">
+            <img class="copy-icon" src="../static/copy.svg" onclick='generateTextMessage(".row-active")'>
+
+            <div class="submission-inner grand-total" onclick="grandTotalForDay()">
+                <p id="grand-total">0.00</p>
+            </div>
+
+
+
+            <button value="testing" id='sumbition-button' class="submission-inner submit-report" onclick="createJSON(),green(this)">
+                    Submit
+                </button>
+        </div>
+
+
+
+    </div>
+    <div id="list-re" class="list-re" value="{{ list }}"></div>
+</main>
+{% endblock %}
