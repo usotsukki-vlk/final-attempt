@@ -4,13 +4,12 @@ import os
 import time
 import json
 
-from cs50 import SQL
+import cs50
 
 from livereload import Server
 
 from flask import Flask, flash, helpers, redirect, render_template, request, session
 from flask_session import Session
-import sqlite3x
 from sqlalchemy.sql.base import Executable
 from datetime import datetime
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -34,7 +33,7 @@ def after_request(response):
 
 
 # DB
-db = SQL("postgres://boqwigugrlxmcr:e9e1751d15511215ca7f57bb3f636d467ce74b3a71d19c9192ee2bf1bbd9a55f@ec2-63-32-248-14.eu-west-1.compute.amazonaws.com:5432/dfa5512mt00u0u")
+db = cs50.SQL("postgresql://boqwigugrlxmcr:e9e1751d15511215ca7f57bb3f636d467ce74b3a71d19c9192ee2bf1bbd9a55f@ec2-63-32-248-14.eu-west-1.compute.amazonaws.com:5432/dfa5512mt00u0u")
 
 
 # json sql injection
