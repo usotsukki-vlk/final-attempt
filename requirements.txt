@@ -10,9 +10,13 @@ check50==3.3.4
 click==8.0.3
 cryptography==36.0.1
 cs50==8.0.1
+distlib==0.3.4
+filelock==3.6.0
 Flask==2.0.2
+Flask-Login==0.5.0
 Flask-Mail==0.9.1
 Flask-Session==0.4.0
+Flask-SQLAlchemy==2.5.1
 gunicorn==20.1.0
 idna==3.3
 itsdangerous==2.0.1
@@ -24,8 +28,10 @@ MarkupSafe==2.0.1
 mysql-connector-python==8.0.27
 pexpect==4.8.0
 Pillow==9.0.0
+platformdirs==2.5.1
 protobuf==3.19.1
 psycopg==3.0.8
+psycopg2==2.9.3
 ptyprocess==0.7.0
 pycodestyle==2.8.0
 pycparser==2.21
@@ -40,4 +46,5 @@ termcolor==1.1.0
 toml==0.10.2
 tornado==6.1
 urllib3==1.26.7
+virtualenv==20.13.4
 Werkzeug==2.0.2
