@@ -13,6 +13,7 @@ from flask_session import Session
 from sqlalchemy.sql.base import Executable
 from datetime import datetime
 from werkzeug.security import check_password_hash, generate_password_hash
+from functools import wraps
 
 # Flask shit
 app = Flask(__name__)
@@ -36,6 +37,24 @@ def after_request(response):
 db = cs50.SQL("postgresql://boqwigugrlxmcr:e9e1751d15511215ca7f57bb3f636d467ce74b3a71d19c9192ee2bf1bbd9a55f@ec2-63-32-248-14.eu-west-1.compute.amazonaws.com:5432/dfa5512mt00u0u")
 
 
+def apology(message, code=400):
+    """Render message as an apology to user."""
+    return render_template("apology.html", code=code, message=message)
+
+
+def login_required(f):
+    """
+    Decorate routes to require login.
+
+    https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/
+    """
+    @ wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("user_id") is None:
+            return redirect("/login")
+        return f(*args, **kwargs)
+    return decorated_function
+
 # json sql injection
 
 
@@ -52,7 +71,8 @@ def index():
     return render_template('index.html', list=list)
 
 
-@ app.route("/add-data", methods=["GET", "POST"])
+@app.route("/add-data", methods=["GET", "POST"])
+@ login_required
 def add_data():
     list = db.execute('select * from reports')
     if request.method == 'POST':
@@ -88,7 +108,53 @@ def add_data():
         return render_template('add.html', list=list)
 
 
+####### LOGIN ####
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    session.clear()
+    if request.method == "POST":
+        name = request.form.get("username")
+        hash = generate_password_hash(request.form.get("password"))
+        db.execute(
+            "insert into users(username, hash) values(?, ?)", name, hash)
+        return redirect("/")
+    else:
+        return render_template("register.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+
+    session.clear()
+    if request.method == "POST":
+        if not request.form.get("username"):
+            return apology("must provide username", 403)
+        elif not request.form.get("password"):
+            return apology("must provide password", 403)
+
+        rows = db.execute("SELECT * FROM users WHERE username = ?",
+                          request.form.get("username"))
+
+        if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
+            return apology("invalid username or password", 403)
+
+        session["user_id"] = rows[0]["id"]
+
+        return redirect("/")
+
+    else:
+        return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
+
+
 if __name__ == "__main__":
-    #app.run(host="172.16.200.10", port=5050, debug=True)
+    # app.run(host="172.16.200.10", port=5050, debug=True)
 
     app.run(debug=True)
