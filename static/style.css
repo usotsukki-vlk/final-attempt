@@ -277,14 +277,14 @@ main {
 }
 
 .incr-decr-btn {
-    width: 30px;
+    text-align: center;
+    width: auto;
+    height: 1rem;
     border: none;
-    height: 1.5rem;
-    font-size: 1.2rem;
-    line-height: 1.5rem;
-    border: none;
+    font-size: 1rem;
     color: white;
     background: transparent;
+    margin: 0px;
 }
 
 .input-big {
@@ -506,10 +506,17 @@ main {
     }
     .label {
         width: 20vw;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px;
     }
     .incr-decr-btn {
         width: 20%;
-        line-height: auto;
+        height: 1rem;
+        line-height: 1rem;
+        align-items: center;
         font-size: 1rem;
     }
     .input-small {
