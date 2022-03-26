@@ -146,7 +146,7 @@ main {
     border: none;
     cursor: pointer;
     width: 30px;
-    aspect-ratio: 1;
+    height: 30px;
     background-image: url('/static/arrow.svg');
     transition: all .25s ease-in-out;
 }
@@ -156,19 +156,19 @@ main {
     color: transparent;
     border: none;
     cursor: pointer;
+    height: 30px;
     width: 30px;
-    aspect-ratio: 1;
     background-image: url('/static/arrow.svg');
     transition: all .25s ease-in-out;
     transform: rotate(180deg);
 }
 
 .date-next:hover {
-    width: 40px;
+    transform: scale(1.2);
 }
 
 .date-prev:hover {
-    width: 40px;
+    transform: rotate(180deg) scale(1.2);
 }
 
 .date-current {
@@ -465,10 +465,11 @@ main {
     .date-next,
     .date-prev {
         width: 25px;
+        height: 25px;
     }
     .date-next:hover,
     .date-prev:hover {
-        width: 25px;
+        content: '';
     }
     input[type="date"]::-webkit-inner-spin-button,
     input[type="date"]::-webkit-calendar-picker-indicator {
@@ -525,4 +526,41 @@ main {
         width: 80%;
         height: 60px;
     }
+}
+
+.login-form {
+    position: absolute;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.login-form div,
+button {
+    margin-top: 30px;
+}
+
+.login-form btn,
+input {
+    width: 15rem;
+    height: 2rem;
+    text-align: center;
+    background-color: #C1C1C1;
+    border: none;
+}
+
+.login-form input:focus {
+    border: 3px solid #151416;
+}
+
+.login-btn {
+    height: 2rem;
+    color: #151416;
+    font-weight: 600;
+    background-color: #FFCE00;
+    border: 2px solid #151416;
 }
