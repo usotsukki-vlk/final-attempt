@@ -144,31 +144,40 @@ main {
     background-color: transparent;
     color: transparent;
     border: none;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
     background-image: url('/static/arrow.svg');
-    transition: all .25s ease-in-out;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .date-prev {
     background-color: transparent;
     color: transparent;
     border: none;
+    background-image: url('/static/arrow.svg');
     cursor: pointer;
     height: 30px;
     width: 30px;
-    background-image: url('/static/arrow.svg');
-    transition: all .25s ease-in-out;
     transform: rotate(180deg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-.date-next:hover {
-    transform: scale(1.2);
-}
-
-.date-prev:hover {
-    transform: rotate(180deg) scale(1.2);
+@media (min-width:50rem) {
+    .date-next:hover {
+        transform: scale(1.2);
+        transition: all .25s ease-in-out;
+    }
+    .date-prev:hover {
+        transform: rotate(180deg) scale(1.2);
+        transition: all .25s ease-in-out;
+    }
 }
 
 .date-current {
@@ -284,7 +293,7 @@ main {
     font-size: 1rem;
     color: white;
     background: transparent;
-    margin: 0px;
+    margin: 0;
 }
 
 .input-big {
@@ -462,15 +471,6 @@ main {
     .date-current {
         font-size: 1rem;
     }
-    .date-next,
-    .date-prev {
-        width: 25px;
-        height: 25px;
-    }
-    .date-next:hover,
-    .date-prev:hover {
-        content: '';
-    }
     input[type="date"]::-webkit-inner-spin-button,
     input[type="date"]::-webkit-calendar-picker-indicator {
         display: none;
@@ -490,6 +490,10 @@ main {
     }
     .link {
         margin: 0 1rem;
+    }
+    .date-prev,
+    .date-next {
+        width: 40px;
     }
     .input-sheet {
         display: flex;
